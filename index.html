@@ -36,6 +36,15 @@
 		let currentBullets = [];
 		let invaders = [];
 		let obstacles = [];
+		let run = 0;
+		let xoffset = 0;
+		let yoffset = 0;
+		let widthInvader = 5;
+		let heightInvader = 5;
+		let spacing = 3 * widthInvader;
+		let invaderRow = 74;
+		let startpoint = 15;
+		let rightDirection = true;
 
 		/*
 		 *	SPIELELOGIK
@@ -45,7 +54,9 @@
 			//TODO Punktestände
 
 			//TODO Invaders erzeugen und in Array (invaders) schreiben damit sie gerendet werden können
-			generateInvaders();
+			for (i = 0; i < 5; i++) {
+				generateInvaders();
+			}
 			//Obstacles erzeugen
 			obstacles.push({
 				x: Math.round(cols / 2) - 5,
@@ -63,21 +74,21 @@
 			});
 		}
 
-	
+
 		function generateInvaders() {
 			//const jimp = require('jimp')
 			const xPos = Math.floor(Math.random() * 60);
 			const yPos = Math.floor(Math.random() * 20);
-			let invaderLines = []
+			let invaderLines = [];
 			let invaderLine;
 
 			for (let y = 0; y < 5; y++) {
-				invaderLine = " ".repeat(10);
-				for (let x = 0; x < 10; x++) {
+				invaderLine = " ".repeat(5);
+				for (let x = 0; x < 5; x++) {
 					if (Math.random() >= 0.5) {
 						invaderLine = setCharsAt(invaderLine, xyToStringPos(x, 0), "#")
 						// renderStr = setCharsAt(renderStr, xyToStringPos(x + xPos, y + yPos), "#");
-						// renderStr = setCharsAt(renderStr, xyToStringPos(2 * 10 - x + xPos, y + yPos), "#");
+						// renderStr = setCharsAt(renderStr, xyToStringPos(2 * 5 - x + xPos, y + yPos), "#");
 					}
 				}
 				//return invaderLine;
@@ -177,17 +188,34 @@
 
 		function renderInvaders(invader, pos) {
 			//TODO Invaders rendern
-			for (let i = 0; i < invaders.length; i++) {
-				for (var j = 0; j < invaders[i].length; j++) {
-					//Zeilenweise in String schreiben
-					//renderStr = setCharsAt(renderStr, xyToStringPos(posX, posY + i), spaceship[i]);
-					//Zeilenweise in String schreiben
-					renderStr = setCharsAt(renderStr, xyToStringPos(i * 20, 5 + j), invaders[i][j]);
-					//2 * width - x + xPos
-					renderStr = setCharsAt(renderStr, xyToStringPos(i * 20 + 10, 5 + j), invaders[i][j].split("").reverse().join(
-						""));
+			run++
+			if (run >= 5) {
+				run = 0;
+				if (rightDirection == true) {
+					xoffset++;
+				} else {
+					xoffset--
+				}
+				if (xoffset >= cols - invaderRow) {
+					yoffset++;
+					rightDirection = false;
+				} else if (xoffset == 0) {
+					yoffset++;
+					rightDirection = true;
 				}
 			}
+				for (let i = 0; i < invaders.length; i++) {
+					for (var j = 0; j < invaders[i].length; j++) {
+						//Zeilenweise in String schreiben
+						//renderStr = setCharsAt(renderStr, xyToStringPos(posX, posY + i), spaceship[i]);
+						//Zeilenweise in String schreiben
+						renderStr = setCharsAt(renderStr, xyToStringPos(spacing * (i + 1) - startpoint + xoffset, heightInvader + j +
+							yoffset), invaders[i][j]);
+						//2 * width - x + xPos
+						renderStr = setCharsAt(renderStr, xyToStringPos(spacing * (i + 1) - startpoint + xoffset + widthInvader,
+							heightInvader + j + yoffset), invaders[i][j].split("").reverse().join(""));
+					}
+				}
 		}
 
 
