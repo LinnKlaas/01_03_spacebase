@@ -26,7 +26,7 @@
 	<pre id="console">
   	<!-- Hier landet später der Output aus Javascript -->
   </pre>
-
+	<script src="classes.js"></script>
 	<script>
 		let renderStr = "";
 		let rows = 50;
@@ -45,6 +45,13 @@
 		let invaderRow = 74;
 		let startpoint = 15;
 		let rightDirection = true;
+		let explode = "";
+		let explosionInvader = ["  |   ",
+				" /    ",
+				"-    ",
+				" _   ",
+				"  |  "
+			]
 
 		/*
 		 *	SPIELELOGIK
@@ -82,9 +89,9 @@
 			let invaderLines = [];
 			let invaderLine;
 
-			for (let y = 0; y < 5; y++) {
+			for (let y = 0; y < heightInvader; y++) {
 				invaderLine = " ".repeat(5);
-				for (let x = 0; x < 5; x++) {
+				for (let x = 0; x < widthInvader; x++) {
 					if (Math.random() >= 0.5) {
 						invaderLine = setCharsAt(invaderLine, xyToStringPos(x, 0), "#")
 						// renderStr = setCharsAt(renderStr, xyToStringPos(x + xPos, y + yPos), "#");
@@ -94,7 +101,14 @@
 				//return invaderLine;
 				invaderLines.push(invaderLine);
 			}
-			invaders.push(invaderLines);
+			// invaderObj = {
+			// 	appearance: invaderLines,
+			// 	x: 0,
+			// 	y: 0
+			// }
+			invaderObj = new Invader(widthInvader, heightInvader, 0, 0, invaderLines, 1);
+
+			invaders.push(invaderObj);
 		}
 
 
@@ -173,10 +187,19 @@
 				}
 			});
 		}
-
 		function renderBullets() {
 			//TODO: Prüfen ob eine Kugel einen Invader oder ein Obstacle trifft, wenn ja Aktion auslösen
-
+			for (let bulletId = 0; bulletId < currentBullets.length; bulletId++) {
+				for (let spaceId = 0; spaceId < invaders.length; spaceId++) {
+					if ((currentBullets[bulletId].x >= invaders[spaceId].x) &&
+							(currentBullets[bulletId].x < invaders[spaceId].x + widthInvader) &&
+							(invaders[spaceId].x != 0) &&
+							(currentBullets[bulletId].y === invaders[spaceId].y + heightInvader)) {
+								invaders[spaceId].appearance = explosionInvader;
+							  invaders[spaceId].exploded = new Date().getTime();
+					}
+				}
+			}
 			//Kugeln entfernen die am oberen Rand angekommen sind ohne Treffer
 			currentBullets = currentBullets.filter(bullet => bullet.y > 1);
 			//Kugeln einen Schritt weiter bewegen, dann rendern
@@ -194,7 +217,7 @@
 				if (rightDirection == true) {
 					xoffset++;
 				} else {
-					xoffset--
+					xoffset--;
 				}
 				if (xoffset >= cols - invaderRow) {
 					yoffset++;
@@ -204,20 +227,28 @@
 					rightDirection = true;
 				}
 			}
-				for (let i = 0; i < invaders.length; i++) {
-					for (var j = 0; j < invaders[i].length; j++) {
-						//Zeilenweise in String schreiben
-						//renderStr = setCharsAt(renderStr, xyToStringPos(posX, posY + i), spaceship[i]);
-						//Zeilenweise in String schreiben
-						renderStr = setCharsAt(renderStr, xyToStringPos(spacing * (i + 1) - startpoint + xoffset, heightInvader + j +
-							yoffset), invaders[i][j]);
-						//2 * width - x + xPos
-						renderStr = setCharsAt(renderStr, xyToStringPos(spacing * (i + 1) - startpoint + xoffset + widthInvader,
-							heightInvader + j + yoffset), invaders[i][j].split("").reverse().join(""));
-					}
+			for (let i = 0; i < invaders.length; i++) {
+				for (var j = 0; j < invaders[i].appearance.length; j++) {
+					//Zeilenweise in String schreiben
+					//renderStr = setCharsAt(renderStr, xyToStringPos(posX, posY + i), spaceship[i]);
+					//Zeilenweise in String schreiben
+					renderStr = setCharsAt(renderStr, xyToStringPos(spacing * (i + 1) - startpoint + xoffset, heightInvader + j +
+						yoffset), invaders[i].appearance[j]);
+					//2 * width - x + xPos
+					renderStr = setCharsAt(renderStr, xyToStringPos(spacing * (i + 1) - startpoint + xoffset + widthInvader,
+						heightInvader + j + yoffset), invaders[i].appearance[j].split("").reverse().join(""));
 				}
+				invaders[i].x = spacing * (i + 1) - startpoint + xoffset + widthInvader;
+				invaders[i].y = yoffset;
+			}
 		}
-
+		function removeInvadersAnimation() {
+			for (let i = 0; i < invaders.length; i++) {
+				if(invaders[i].exploded != 0 && new Date().getTime() - invaders[i].exploded > 5) {
+					invaders[i].appearance = explode;
+				}
+			}
+		}
 
 
 		//Hauptrenderfunktion
@@ -236,6 +267,9 @@
 
 			//Render Bullets
 			renderBullets(renderStr);
+
+			//Remove exploded invaders
+			removeInvadersAnimation();
 
 			//Gesamtergebnis anzeigen
 			document.getElementById("console").innerText = renderStr;
