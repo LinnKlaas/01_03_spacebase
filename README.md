@@ -6,22 +6,20 @@ Es basiert auf dem Grundgerüst von unserem Professor Florian Geiselhart, welche
 <img src = "Bildschirmfoto 2020-02-04 um 13.26.59.png"/>
 
 ## Usage
-Um das Spiel zum Laufen zu bringen, muss man auf GitHub die html - Datei in einem beliebigen Browser öffnen. Es startet automatisch, sobald die Seite geladen hat. Nun bewegen sich die Invaders langsam von links nach rechts, rücken eine Reihe nach unten und bewegen sich nun nach links. Mit den "links" und "rechts" Pfeiltasten lässt sich die Position des Spaceships verändern. Mit der Leertaste kann man nun Bullets in Richtung der Invaders schießen. Bei einem Treffer explodieren die Invaders und der Score (links oben in der Ecke) zählt um eins hoch. Möchte man die Invaders schießen lassen, so muss man die Pfeiltaste "unten" drücken. Momentan können leider nur alle Invaders gleichzeitig auf das Spaceship schießen. Durch das Hindernis kann man sich vor den Kugeln schützen. Eigentlich müsste es Stück für Stück kaputt gehen, jedoch verschwinden zu diesem Zeitpunkt lediglich die Kugeln. Sobald man getroffen wurde, ist das Spiel vorbei, hat man alle Invaders abgeschossen, so hat man das Spiel gewonnen. Durch einen Button links oben in der Ecke, kann man ein neues Spiel beginnen.
+Um das Spiel zum Laufen zu bringen, muss man auf GitHub das Repository forken und clonen und danach die html - Datei in einem beliebigen Browser öffnen. Es startet automatisch, sobald die Seite geladen hat. Nun bewegen sich die Invaders langsam von links nach rechts, rücken eine Reihe nach unten und bewegen sich nun nach links. Mit den "links" und "rechts" Pfeiltasten lässt sich die Position des Spaceships verändern. Mit der Leertaste kann man nun Bullets in Richtung der Invaders schießen. Bei einem Treffer explodieren die Invaders und der Score (links oben in der Ecke) zählt um eins hoch. Möchte man die Invaders schießen lassen, so muss man die Pfeiltaste "unten" drücken. Momentan können leider nur alle Invaders gleichzeitig auf das Spaceship schießen. Durch das Hindernis kann man sich vor den Kugeln schützen. Eigentlich müsste es Stück für Stück kaputt gehen, jedoch verschwinden zu diesem Zeitpunkt lediglich die Kugeln. Sobald man getroffen wurde, ist das Spiel vorbei, hat man alle Invaders abgeschossen, so hat man das Spiel gewonnen. Durch einen Button links oben in der Ecke, kann man ein neues Spiel beginnen.
 
 ## Structure
 **Klassen:**
 * **Invader:** Eine Klasse um ein Invader in Code abzubilden. Sie enthält diese Eigenschaften:
-  * `width`: Die Breite des Invaders
-  * `height`: Die Höhe des Invaders
-  * `x`: Die x-Position des Invaders
-  * `y`: Die y-Position des Invaders
-  * `appearance`: Wie der Invader aussieht
-  * `id`: Die jeweilige ID des Invaders
+  * `width`: Die Breite des Invaders (Property, 5 Pixel die gespiegelt werden (aufgrund Symmetrie) -> also insgesamt 10 Pixel)
+  * `height`: Die Höhe des Invaders (Property, 5 Pixel)
+  * `x`: Die x-Position des Invaders (Property)
+  * `y`: Die y-Position des Invaders (Property)
+  * `appearance`: Wie der Invader aussieht (Property, wird jedes Mal neu generiert)
+  * `id`: Die jeweilige ID des Invaders (Property)
   
 **Funktionen**
   * `function generateInvaders()`: Eine Funktion, die die Invaders generieren lässt.
-  * `function fireBulletInvaders()`: Diese Funktion lässt die Invaders Kugeln nach unten schießen.
-  * `function renderUI(Treffer)`: Eine Funktion, die den aktuellen Punktestand anzeigen lässt.
   * `function renderBullets()`: Diese Funktion beinhaltet viele verschiedene Aktionen. Als erstes prüft sie, ob eine Kugel einen Invader trifft, wenn ja so lässt sie diesen explodieren und zählt die Trefferanzahl um eins hoch.
   Dann überprüft sie, ob eine Kugel der Invaders das Spaceship trifft, wenn ja so lässt sie das Spaceship verschwinden, friert das Spiel ein und zeigt Game Over auf dem Screen an.
   Desweiteren prüft sie, ob eine Spaceship Kugel ein Obstacle trifft, wenn ja, so lässt sie die Kugel abprallen und verschwinden.
@@ -30,6 +28,8 @@ Um das Spiel zum Laufen zu bringen, muss man auf GitHub die html - Datei in eine
   * `function renderInvaders(invader, pos)`: Eine Funktion, die die Invaders, sobald sie einen Rand erreicht haben, einen Schritt nach unten rücken und in die Entgegengesetzte Richtung weitergehen lassen. Außerdem rendert sie die Invaders.
   * `function removeInvadersAnimation()`: Eine Funktion, die das Array mit der Explosion eines Invaders nur kurz anzeigen lässt und die Invaders dann verschwinden lässt.
   * `function render()`: Eine Funktion die alle Funktionen des Programms rendert und außerdem den "Game Over" oder "Game Won" Screen anzeigt.
+<br><br/>
+Bei Beginn des Spiels werden also 5 Invaders mit "generateInvaders()" generiert.
 
 ## ToDos
 1. Man muss die Invaders einzeln und vor allem selbstständig und zufällig schießen lassen.
@@ -43,3 +43,4 @@ Um das Spiel zum Laufen zu bringen, muss man auf GitHub die html - Datei in eine
 9. Hintergrundmusik und Soundeffekte.
 10. Mehrere Level, mit unterschiedlichen Schwierigkeitsstufen.
 11. Start- und Pause-Button
+12. Highscore
