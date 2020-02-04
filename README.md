@@ -1,8 +1,8 @@
 # My awesome Project
 Dieses Projekt ist ein Nachbau des Spiels "Space Invaders". Einige Funktionen des Originalspiels sind bereits möglich, jedoch längst nicht alle, da es kein fertig geschriebenes Programm ist. Man kann mit einem Spaceship Invaders abschießen, sowie auch von Invaders abgeschossen zu werden. Hier einmal ein Screenshot, wie das momentane Spiel aussieht: <br><br/>
-<img src = "Bildschirmfoto 2020-02-04 um 13.26.59.png"/>
+<img src = "Bildschirmfoto 2020-02-04 um 13.48.43.png" width="860"/> <br><br/>
 Dieses Spiel war das Projekt von IoT - Erstsemestern, um JavaScript zu lernen.
-Es basiert auf dem Grundgerüst unseres Professors Florian Geiselhart, welches schon einige Funktionen enthielt. Mit dieser Basis haben wir dann das Spiel weiterprogrammiert. Hier bekommt man die Base her: <br><br/>
+Es basiert auf dem Grundgerüst von unserem Professor Florian Geiselhart, welches schon einige Funktionen enthielt. Mit dieser Basis haben wir dann das Spiel weiterprogrammiert. Hier bekommt man die Base her: <br><br/>
 <img src = "Bildschirmfoto 2020-02-04 um 13.26.59.png"/>
 
 ## Usage
