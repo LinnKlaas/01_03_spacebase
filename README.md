@@ -19,14 +19,13 @@ Um das Spiel zum Laufen zu bringen, muss man auf GitHub das Repository forken un
   * `id`: Die jeweilige ID des Invaders (Property)
   
 **Funktionen**
-  * `function generateInvaders()`: Eine Funktion, die die Invaders generieren lässt.
+  * `function generateInvaders()`: Eine Funktion, die die Invaders generieren lässt. Sie lässt fünf mal (da die Breite des Invaders zehn ist, aber der Körper nach der Hälfte gespiegelt wird) eine zufällige Zahl erstellen, ist diese Zahl gleich oder größer 0.5, so zeichnet sie ein "#" an diese Stelle in das Array "invaderLine" (so hat man eine 50% Verteilung der Charaktere). Das wiederholt sie fünf mal, da die Höhe des Invaders fünf ist. Diese fünf Zeilen befinden sich nun alle im Array "invaderLine", welches nun in das Array "invaderLines" gepusht wird. Zum Schluss der Funktion, wird ein neues Objekt der Klasse "Invader" erzeugt, welches dann in die Klasse "Invader" gepusht wird.
   * `function renderBullets()`: Diese Funktion beinhaltet viele verschiedene Aktionen. Als erstes prüft sie, ob eine Kugel einen Invader trifft, wenn ja so lässt sie diesen explodieren und zählt die Trefferanzahl um eins hoch.
   Dann überprüft sie, ob eine Kugel der Invaders das Spaceship trifft, wenn ja so lässt sie das Spaceship verschwinden, friert das Spiel ein und zeigt Game Over auf dem Screen an.
   Desweiteren prüft sie, ob eine Spaceship Kugel ein Obstacle trifft, wenn ja, so lässt sie die Kugel abprallen und verschwinden.
   Sie prüft außerdem, ob eine Invader Kugel ein Obstacle trifft, wenn ja  so lässt sie die Kugel ebenfalls abprallen und verschwinden.
   Zuletzt entfernt sie Kugeln, die nichts getroffen haben und den oberen oder unteren Rand erreichen, und bewegt die Kugeln, einen Schritt weiter und rendert sie dann erneut.
-  * `function renderInvaders(invader, pos)`: Eine Funktion, die die Invaders, sobald sie einen Rand erreicht haben, einen Schritt nach unten rücken und in die Entgegengesetzte Richtung weitergehen lassen. Außerdem rendert sie die Invaders.
-  * `function removeInvadersAnimation()`: Eine Funktion, die das Array mit der Explosion eines Invaders nur kurz anzeigen lässt und die Invaders dann verschwinden lässt.
+  * `function renderInvaders(invader, pos)`: Eine Funktion, die die Invaders, sobald sie einen Rand erreicht haben, einen Schritt nach unten rücken und in die Entgegengesetzte Richtung weitergehen lassen. Außerdem rendert sie die Invaders: Die ursprüngliche Breite (fünf) der Invader, wird hier nun gespiegelt, sodass der Körper symmetrisch aufgebaut ist.
   * `function render()`: Eine Funktion die alle Funktionen des Programms rendert und außerdem den "Game Over" oder "Game Won" Screen anzeigt.
 <br><br/>
 Bei Beginn des Spiels werden also 5 Invaders mit "generateInvaders()" generiert.
