@@ -9,7 +9,7 @@ Es basiert auf dem Grundgerüst von unserem Professor Florian Geiselhart, welche
 Um das Spiel zum Laufen zu bringen, muss man nur das GitHub Repository downloaden und danach die html - Datei in einem beliebigen Browser öffnen. Es startet automatisch, sobald die Seite geladen hat. Nun bewegen sich die Invaders langsam von links nach rechts, rücken eine Reihe nach unten und bewegen sich nun nach links. Mit den "links" und "rechts" Pfeiltasten lässt sich die Position des Spaceships verändern. Mit der Leertaste kann man nun Bullets in Richtung der Invaders schießen. Bei einem Treffer explodieren die Invaders und der Score (links oben in der Ecke) zählt um eins hoch. Möchte man die Invaders schießen lassen, so muss man die Pfeiltaste "unten" drücken. Momentan können leider nur alle Invaders gleichzeitig auf das Spaceship schießen. Durch das Hindernis kann man sich vor den Kugeln schützen. Eigentlich müsste es Stück für Stück kaputt gehen, jedoch verschwinden zu diesem Zeitpunkt lediglich die Kugeln. Sobald man getroffen wurde, ist das Spiel vorbei, hat man alle Invaders abgeschossen, so hat man das Spiel gewonnen. Durch einen Button links oben in der Ecke, kann man ein neues Spiel beginnen.
 
 ## Structure
-**Klassen:**
+**Klassen**
 * **Invader:** Eine Klasse um ein Invader in Code abzubilden. Sie enthält diese Eigenschaften:
   * `width`: Die Breite des Invaders (Property, 5 Pixel die gespiegelt werden (aufgrund Symmetrie) -> also insgesamt 10 Pixel)
   * `height`: Die Höhe des Invaders (Property, 5 Pixel)
