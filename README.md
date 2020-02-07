@@ -1,4 +1,4 @@
-# My awesome Project
+# Game: Space Invaders
 Dieses Projekt ist ein Nachbau des Spiels "Space Invaders". Einige Funktionen des Originalspiels sind bereits möglich, jedoch längst nicht alle, da es kein fertig geschriebenes Programm ist. Man kann mit einem Spaceship Invaders abschießen, sowie auch von Invaders abgeschossen werden. Hier einmal ein Screenshot, wie das momentane Spiel aussieht: <br><br/>
 <img src = "Bildschirmfoto 2020-02-04 um 13.48.43.png" width="860"/> <br><br/>
 Dieses Spiel war das Projekt von IoT - Erstsemestern, um JavaScript zu lernen. Als Inspiration diente ein YouTube - Video des ursprünglichen Spiels.
