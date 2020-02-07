@@ -1,5 +1,5 @@
 class Invader {
-  constructor(width, height, posX, posY, appearance, id) {
+  constructor(width, height, posX, posY, appearance, id){
     this.width = width;
     this.height = height;
     this.x = posX;
